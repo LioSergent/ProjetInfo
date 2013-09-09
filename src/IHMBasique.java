@@ -21,20 +21,20 @@ import java.awt.Color;
 
 public class IHMBasique extends JFrame implements Constantes {
 	
-	
+	//Ajout d'un commentaire USELESS
 
 
 	private String filename;
     private Morceau partie;
     public JoueurDeSession playSess=null;                                          //Le Thread de lecture de l'accompagnement
     
-    //Attributs boutons, j'en ai besoin en tant qu'attributs pour les appeler dans certaines méthodes.
+    //Attributs boutons, j'en ai besoin en tant qu'attributs pour les appeler dans certaines mï¿½thodes.
     private JProgressBar jprogressbar = null;                                  //Barre d'affichage de la progression
-	private JButton jButton_pause = null;                                      //Le bouton lançant pause()
+	private JButton jButton_pause = null;                                      //Le bouton lanï¿½ant pause()
 	private JButton jButton_Do= new javax.swing.JButton();
 	private JButton jButton_Dod= new javax.swing.JButton();
-	private JButton jButton_Ré= new javax.swing.JButton();
-	private JButton jButton_Réd= new javax.swing.JButton();
+	private JButton jButton_Re= new javax.swing.JButton();
+	private JButton jButton_Red= new javax.swing.JButton();
 	private JButton jButton_Mi= new javax.swing.JButton();
 	private JButton jButton_Fa= new javax.swing.JButton();
 	private JButton jButton_Fad= new javax.swing.JButton();
@@ -43,7 +43,7 @@ public class IHMBasique extends JFrame implements Constantes {
 	private JButton jButton_La= new javax.swing.JButton();
 	private JButton jButton_Lad= new javax.swing.JButton();
 	private JButton jButton_Si= new javax.swing.JButton();
-    private JSlider JSlider_AugmenterVolume= new javax.swing.JSlider(-80, 6);            //Le bouton réglant le volume
+    private JSlider JSlider_AugmenterVolume= new javax.swing.JSlider(-80, 6);            //Le bouton rï¿½glant le volume
     
 	
 	public IHMBasique(Morceau sess) {
@@ -51,25 +51,25 @@ public class IHMBasique extends JFrame implements Constantes {
 		
 		partie=sess;
 		filename=partie.renvoyerAccompagnement();
-		//Création de la fenêtre
+		//Crï¿½ation de la fenï¿½tre
 		
 		  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        setSize(400, 275);
 	        setLocation(200, 200);
 	        setTitle("Impro sur " + filename);
-	        //Panel avec son gestionnaire de présentation
+	        //Panel avec son gestionnaire de prï¿½sentation
 	        JPanel buttonpanel = new JPanel(new GridBagLayout());
 	        GridBagConstraints x = new GridBagConstraints();
 	      
-	 //Un premier bouton un peu particulier: le slider pour régler le volume
+	 //Un premier bouton un peu particulier: le slider pour rï¿½gler le volume
 	        
-	      JSlider JSlider_AugmenterVolume=new javax.swing.JSlider(-10, 6);  //Palette de volume -10dB à +6 dB.
+	      JSlider JSlider_AugmenterVolume=new javax.swing.JSlider(-10, 6);  //Palette de volume -10dB ï¿½ +6 dB.
 	      
-	      SliderListener sliderlisten = new SliderListener() {                      //Création d'un ChangeListener Abstrait pour le Slider, définit dans une autre classe
+	      SliderListener sliderlisten = new SliderListener() {                      //Crï¿½ation d'un ChangeListener Abstrait pour le Slider, dï¿½finit dans une autre classe
 	    	  public void stateChanged(ChangeEvent e) {
 	    	        JSlider source = (JSlider)e.getSource();
 	    	        if (!source.getValueIsAdjusting()) {
-	    	              changerVolume((int)source.getValue());                    //Appel à une méthode de IHMBasique puis de JoueurDeSession
+	    	              changerVolume((int)source.getValue());                    //Appel ï¿½ une mï¿½thode de IHMBasique puis de JoueurDeSession
 	    	            
 	    	        }    
 	    	    }
@@ -80,7 +80,7 @@ public class IHMBasique extends JFrame implements Constantes {
 	        
 	       	 
 	         
-	        x.fill = GridBagConstraints.HORIZONTAL;                                //Caractéristiques pour le GridBagLayout
+	        x.fill = GridBagConstraints.HORIZONTAL;                                //Caractï¿½ristiques pour le GridBagLayout
 	        x.gridx = 2;
 	        x.gridy = 4;
 	        x.ipady=0;
@@ -101,27 +101,27 @@ public class IHMBasique extends JFrame implements Constantes {
 	            public void mousePressed(java.awt.event.MouseEvent evt) {
 	            if (playSess==null||playSess.isCanceled==true) {
 	            	playSess = new JoueurDeSession(partie);
-	            playSess.start();                                       //Appel à méthode du thread JoueurDeSession
+	            playSess.start();                                       //Appel ï¿½ mï¿½thode du thread JoueurDeSession
 	            }
 	        	
 	        		
 	            
 	            /*
-	             Ajout à l'intérieur du mouseclicked un timer qui va permettre de rafraîchir les élèments graphiques.
-	             Ce timer est ici parce que l'action qu'il doit engendrer régulièrement n'a de sens que si le thread playSess est lancé,
-	             à cause des variables que playSess initialise.
+	             Ajout ï¿½ l'intï¿½rieur du mouseclicked un timer qui va permettre de rafraï¿½chir les ï¿½lï¿½ments graphiques.
+	             Ce timer est ici parce que l'action qu'il doit engendrer rï¿½guliï¿½rement n'a de sens que si le thread playSess est lancï¿½,
+	             ï¿½ cause des variables que playSess initialise.
 	             */
 	        		
 	        		         ActionListener taskPerformer = new ActionListener() {
 			           
 
 					public void actionPerformed(ActionEvent evt) {
-		         //   	Tout ce qui doit être actualisé.
+		         //   	Tout ce qui doit ï¿½tre actualisï¿½.
 				        jprogressbar.setValue(sortirPourcentage());
 				        jButton_Do.setBackground(sortirCouleurInstant(0));
 				        jButton_Dod.setBackground(sortirCouleurInstant(1));
-		            	 jButton_Ré.setBackground(sortirCouleurInstant(2));
-		            	 jButton_Réd.setBackground(sortirCouleurInstant(3));
+		            	 jButton_Re.setBackground(sortirCouleurInstant(2));
+		            	 jButton_Red.setBackground(sortirCouleurInstant(3));
 		            	 jButton_Mi.setBackground(sortirCouleurInstant(4));
 		            	 jButton_Fa.setBackground(sortirCouleurInstant(5));
 		            	 jButton_Fad.setBackground(sortirCouleurInstant(6));
@@ -135,7 +135,7 @@ public class IHMBasique extends JFrame implements Constantes {
 		            };}
 		         ;
 		        
-		      new Timer(100, taskPerformer) .start();     //Création et lancement du timer, qui va lancer lancer l'actualisation tous les dixièmes de seconde
+		      new Timer(100, taskPerformer) .start();     //Crï¿½ation et lancement du timer, qui va lancer lancer l'actualisation tous les dixiï¿½mes de seconde
 		              
 		 
 	        		
@@ -164,7 +164,7 @@ public class IHMBasique extends JFrame implements Constantes {
 
 				public void mousePressed(java.awt.event.MouseEvent evt) {
 				
-	            	pause();                                                    //Méthode de l'IHM
+	            	pause();                                                    //Mï¿½thode de l'IHM
 	            }
 	        });
 	       
@@ -174,11 +174,11 @@ public class IHMBasique extends JFrame implements Constantes {
 	        buttonpanel.add(jButton_pause,x);
 	        getContentPane().add(buttonpanel);
 	       
-	  //Création de tous les touches de piano, une par une "à la main".
+	  //Crï¿½ation de tous les touches de piano, une par une "ï¿½ la main".
 	    
-	        jButton_Do.setText(c.renvoyerNom());                       //Le bouton Do est noté Do
-	        jButton_Do.setBackground(partie.renvoyerGammeInstant(0).renvoyerContenu()[0]);       //La couleur est associée celle de la première
-	                                                                                             //Case de la Gamme à l'instant 0, et sera actualisée.
+	        jButton_Do.setText(c.renvoyerNom());                       //Le bouton Do est notï¿½ Do
+	        jButton_Do.setBackground(partie.renvoyerGammeInstant(0).renvoyerContenu()[0]);       //La couleur est associï¿½e celle de la premiï¿½re
+	                                                                                             //Case de la Gamme ï¿½ l'instant 0, et sera actualisï¿½e.
 	        
 	       jButton_Do.addMouseListener(new java.awt.event.MouseAdapter() {                       //On fait jouer Do lorsqu'il y a un mouseClicked.
 	    	
@@ -221,9 +221,9 @@ public class IHMBasique extends JFrame implements Constantes {
 	        
 	        
 	        
-	        jButton_Ré.setText(d.renvoyerNom());
-	        jButton_Ré.setBackground(partie.renvoyerGammeInstant(1).renvoyerContenu()[2]);
-	       jButton_Ré.addMouseListener(new java.awt.event.MouseAdapter() {
+	        jButton_Re.setText(d.renvoyerNom());
+	        jButton_Re.setBackground(partie.renvoyerGammeInstant(1).renvoyerContenu()[2]);
+	       jButton_Re.addMouseListener(new java.awt.event.MouseAdapter() {
 	 
 	            public void mousePressed(java.awt.event.MouseEvent evt) {
 	               d.jouer();
@@ -237,14 +237,14 @@ public class IHMBasique extends JFrame implements Constantes {
 	        x.ipady=100;
 	        x.ipadx=0;
 	       
-	        buttonpanel.add(jButton_Ré,x);
+	        buttonpanel.add(jButton_Re,x);
 	      getContentPane().add(buttonpanel);
 		        
 	        
 	   
-	        jButton_Réd.setText(dd.renvoyerNom());
-	        jButton_Réd.setBackground(partie.renvoyerGammeInstant(1).renvoyerContenu()[3]);
-	       jButton_Réd.addMouseListener(new java.awt.event.MouseAdapter() {
+	        jButton_Red.setText(dd.renvoyerNom());
+	        jButton_Red.setBackground(partie.renvoyerGammeInstant(1).renvoyerContenu()[3]);
+	       jButton_Red.addMouseListener(new java.awt.event.MouseAdapter() {
 	 
 	            public void mousePressed(java.awt.event.MouseEvent evt) {
 	               dd.jouer();
@@ -257,7 +257,7 @@ public class IHMBasique extends JFrame implements Constantes {
 	        x.ipady=70;
 	        x.ipadx=0;
 	       
-	       buttonpanel.add(jButton_Réd,x);
+	       buttonpanel.add(jButton_Red,x);
 	        getContentPane().add(buttonpanel);
 	
 	        jButton_Mi.setText(e.renvoyerNom());
@@ -436,7 +436,7 @@ public class IHMBasique extends JFrame implements Constantes {
 		        
 		        buttonpanel.add(jprogressbar,x);
 		        
-		        //Ajout du bouton Stop, pour pouvoir redemarrer ensuite depuis le début.
+		        //Ajout du bouton Stop, pour pouvoir redemarrer ensuite depuis le dï¿½but.
 		        
 		        JButton jButton_stop = new javax.swing.JButton();
 		        jButton_stop.setText("Stop");
@@ -469,7 +469,7 @@ public class IHMBasique extends JFrame implements Constantes {
 	
 	
 	
-	public void pause(){                                         //Méthode pour faire la pause sur playSess et changer le texte sur le bouton.
+	public void pause(){                                         //Mï¿½thode pour faire la pause sur playSess et changer le texte sur le bouton.
 		                                                         //Permet de faire la pause dans l' ActionListener
  if (playSess != null) {
 	 if (jButton_pause.getText()=="Reprendre") {
@@ -495,13 +495,13 @@ public class IHMBasique extends JFrame implements Constantes {
 	        }
 	    }
 	
-	  public Color sortirCouleurInstant(int b) {                    //Méthode permettant d'avoir accès à la méthode getColorInstant dans les 
+	  public Color sortirCouleurInstant(int b) {                    //Mï¿½thode permettant d'avoir accï¿½s ï¿½ la mï¿½thode getColorInstant dans les 
 			return this.playSess.getColorInstant(b);              //Action Listeners
 		}
 		
 	  
 	 
-	public int sortirPourcentage() {                                //Même idée, mais pour le pourcentage
+	public int sortirPourcentage() {                                //Mï¿½me idï¿½e, mais pour le pourcentage
 		return this.playSess.getPourcentage();
 	}
 	 
